@@ -10,20 +10,20 @@
 var STORAGE_KEY = 'jostas_submissions';
 
 function loadSubmissions() {
-  try   { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
   catch (e) { return []; }
 }
 
 function saveSubmission(data) {
   var all = loadSubmissions();
-  data.id          = Date.now();
+  data.id = Date.now();
   data.submittedAt = new Date().toLocaleString('en-ZA', {
     timeZone: 'Africa/Johannesburg',
     dateStyle: 'medium',
     timeStyle: 'short'
   });
   all.unshift(data);
-  try   { localStorage.setItem(STORAGE_KEY, JSON.stringify(all)); }
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(all)); }
   catch (e) { console.warn('localStorage full — submission not saved.'); }
 }
 
@@ -40,28 +40,28 @@ function renderAdminPanel() {
 
   function esc(s) {
     return String(s || '')
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
   var rows = subs.length
     ? subs.map(function (s, i) {
-        return [
-          '<tr>',
-          '<td style="'+CELL+'color:#888">#'+(i+1)+'</td>',
-          '<td style="'+CELL+'">'  +esc(s.submittedAt)+'</td>',
-          '<td style="'+CELL+'color:#fff">'+esc(s.name)+'</td>',
-          '<td style="'+CELL+'"><a href="mailto:'+esc(s.email)+'" style="color:#84c02a;text-decoration:none">'+esc(s.email)+'</a></td>',
-          '<td style="'+CELL+'"><a href="tel:'+esc(s.phone)+'"    style="color:#84c02a;text-decoration:none">'+esc(s.phone)+'</a></td>',
-          '<td style="'+CELL+'">'  +esc(s.service)+'</td>',
-          '<td style="'+CELL+'max-width:220px;white-space:pre-wrap;word-break:break-word">'+esc(s.message)+'</td>',
-          '</tr>'
-        ].join('');
-      }).join('')
+      return [
+        '<tr>',
+        '<td style="' + CELL + 'color:#888">#' + (i + 1) + '</td>',
+        '<td style="' + CELL + '">' + esc(s.submittedAt) + '</td>',
+        '<td style="' + CELL + 'color:#fff">' + esc(s.name) + '</td>',
+        '<td style="' + CELL + '"><a href="mailto:' + esc(s.email) + '" style="color:#84c02a;text-decoration:none">' + esc(s.email) + '</a></td>',
+        '<td style="' + CELL + '"><a href="tel:' + esc(s.phone) + '"    style="color:#84c02a;text-decoration:none">' + esc(s.phone) + '</a></td>',
+        '<td style="' + CELL + '">' + esc(s.service) + '</td>',
+        '<td style="' + CELL + 'max-width:220px;white-space:pre-wrap;word-break:break-word">' + esc(s.message) + '</td>',
+        '</tr>'
+      ].join('');
+    }).join('')
     : '<tr><td colspan="7" style="padding:2rem;text-align:center;color:#555">No submissions yet.</td></tr>';
 
   var overlay = document.createElement('div');
-  overlay.id  = 'jostas-admin';
+  overlay.id = 'jostas-admin';
   overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:10000;overflow-y:auto;padding:2rem;font-family:Poppins,sans-serif';
 
   overlay.innerHTML = [
@@ -71,7 +71,7 @@ function renderAdminPanel() {
     '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:1.5rem">',
     '<h2 style="color:#fff;font-size:1rem;font-weight:600;margin:0">',
     '<i class="fas fa-inbox" style="color:#84c02a;margin-right:8px"></i>',
-    'Jostas — Submissions <span style="color:#444;font-weight:300">('+subs.length+')</span>',
+    'Jostas — Submissions <span style="color:#444;font-weight:300">(' + subs.length + ')</span>',
     '</h2>',
     '<div style="display:flex;gap:8px;flex-wrap:wrap">',
     '<button id="adm-export" style="background:#84c02a;color:#fff;border:none;padding:7px 14px;border-radius:4px;cursor:pointer;font-size:0.75rem;font-weight:600;font-family:inherit">Export CSV</button>',
@@ -83,22 +83,22 @@ function renderAdminPanel() {
     '<div style="overflow-x:auto">',
     '<table style="width:100%;border-collapse:collapse;color:#bbb;min-width:700px">',
     '<thead><tr style="border-bottom:2px solid #2a2a2a">',
-    ['#','Date','Name','Email','Phone','Service','Message'].map(function(h){
-      return '<th style="padding:10px 14px;color:#84c02a;font-weight:600;text-align:left;white-space:nowrap;font-size:0.8rem">'+h+'</th>';
+    ['#', 'Date', 'Name', 'Email', 'Phone', 'Service', 'Message'].map(function (h) {
+      return '<th style="padding:10px 14px;color:#84c02a;font-weight:600;text-align:left;white-space:nowrap;font-size:0.8rem">' + h + '</th>';
     }).join(''),
     '</tr></thead>',
-    '<tbody>'+rows+'</tbody>',
+    '<tbody>' + rows + '</tbody>',
     '</table></div></div>'
   ].join('');
 
   document.body.appendChild(overlay);
 
-  document.getElementById('adm-close').onclick  = function () { overlay.remove(); };
+  document.getElementById('adm-close').onclick = function () { overlay.remove(); };
   document.getElementById('adm-export').onclick = function () { adminExportCSV(loadSubmissions()); };
-  document.getElementById('adm-clear').onclick  = function () {
+  document.getElementById('adm-clear').onclick = function () {
     var n = loadSubmissions().length;
     if (!n) { alert('Nothing to clear.'); return; }
-    if (confirm('Delete all '+n+' submission(s)? This cannot be undone.')) {
+    if (confirm('Delete all ' + n + ' submission(s)? This cannot be undone.')) {
       localStorage.removeItem(STORAGE_KEY);
       overlay.remove();
       renderAdminPanel();
@@ -108,15 +108,15 @@ function renderAdminPanel() {
 
 function adminExportCSV(data) {
   if (!data.length) { alert('No submissions to export.'); return; }
-  var cols = ['#','Date','Name','Email','Phone','Service','Message'];
+  var cols = ['#', 'Date', 'Name', 'Email', 'Phone', 'Service', 'Message'];
   var rows = data.map(function (s, i) {
-    return [i+1, s.submittedAt, s.name, s.email, s.phone, s.service, s.message]
-      .map(function (v) { return '"'+String(v||'').replace(/"/g,'""')+'"'; }).join(',');
+    return [i + 1, s.submittedAt, s.name, s.email, s.phone, s.service, s.message]
+      .map(function (v) { return '"' + String(v || '').replace(/"/g, '""') + '"'; }).join(',');
   });
-  var blob = new Blob([[cols.join(',')].concat(rows).join('\r\n')], { type:'text/csv;charset=utf-8;' });
-  var a    = Object.assign(document.createElement('a'), {
-    href:     URL.createObjectURL(blob),
-    download: 'jostas_submissions_'+new Date().toISOString().slice(0,10)+'.csv'
+  var blob = new Blob([[cols.join(',')].concat(rows).join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+  var a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob),
+    download: 'jostas_submissions_' + new Date().toISOString().slice(0, 10) + '.csv'
   });
   document.body.appendChild(a);
   a.click();
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* --------------------------------------------------------------
      D4. Portfolio filter
   -------------------------------------------------------------- */
-  var filterBtns     = document.querySelectorAll('.filter-btn');
+  var filterBtns = document.querySelectorAll('.filter-btn');
   var portfolioItems = document.querySelectorAll('.portfolio-item');
 
   if (filterBtns.length && portfolioItems.length) {
@@ -222,12 +222,12 @@ document.addEventListener('DOMContentLoaded', function () {
             item.classList.remove('hidden');
             requestAnimationFrame(function () {
               requestAnimationFrame(function () {
-                item.style.opacity   = '1';
+                item.style.opacity = '1';
                 item.style.transform = 'translateY(0)';
               });
             });
           } else {
-            item.style.opacity   = '0';
+            item.style.opacity = '0';
             item.style.transform = 'translateY(10px)';
             setTimeout(function () { item.classList.add('hidden'); }, 280);
           }
@@ -242,10 +242,10 @@ document.addEventListener('DOMContentLoaded', function () {
   -------------------------------------------------------------- */
   if (portfolioItems.length) {
     var lb = document.createElement('div');
-    lb.id  = 'jostas-lb';
+    lb.id = 'jostas-lb';
     lb.innerHTML = '<button id="jostas-lb-close" aria-label="Close">&#10005;</button>'
-                 + '<img id="jostas-lb-img" src="" alt="" />'
-                 + '<div id="jostas-lb-cap"></div>';
+      + '<img id="jostas-lb-img" src="" alt="" />'
+      + '<div id="jostas-lb-cap"></div>';
     document.body.appendChild(lb);
 
     var lbImg = document.getElementById('jostas-lb-img');
@@ -287,10 +287,10 @@ document.addEventListener('DOMContentLoaded', function () {
      D6. Navbar active link + scroll-shrink
   -------------------------------------------------------------- */
   var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-  var page     = window.location.pathname.split('/').pop() || 'index.html';
+  var page = window.location.pathname.split('/').pop() || 'index.html';
 
   navLinks.forEach(function (link) {
-    var href   = (link.getAttribute('href') || '').split('/').pop();
+    var href = (link.getAttribute('href') || '').split('/').pop();
     var isHome = (page === '' || page === 'index.html') && href === 'index.html';
     link.classList.toggle('active', isHome || (href !== '' && href === page));
   });
@@ -315,13 +315,13 @@ document.addEventListener('DOMContentLoaded', function () {
      D8. CONTACT FORM
   ============================================================== */
 
-  var form        = document.getElementById('contactForm');
-  var formFields  = document.getElementById('formFields');
+  var form = document.getElementById('contactForm');
+  var formFields = document.getElementById('formFields');
   var formSuccess = document.getElementById('formSuccess');
-  var submitBtn   = document.getElementById('submitFormBtn');
-  var resetBtn    = document.getElementById('resetFormBtn');
-  var messageEl   = document.getElementById('message');
-  var charCount   = document.getElementById('charCount');
+  var submitBtn = document.getElementById('submitFormBtn');
+  var resetBtn = document.getElementById('resetFormBtn');
+  var messageEl = document.getElementById('message');
+  var charCount = document.getElementById('charCount');
 
   if (!form) return; /* not on contact page */
 
@@ -367,26 +367,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function checkName() {
     var v = document.getElementById('name').value.trim();
-    if (v.length >= 2) { markValid('name');    return true; }
+    if (v.length >= 2) { markValid('name'); return true; }
     markInvalid('name'); return false;
   }
 
   function checkEmail() {
     var v = document.getElementById('email').value.trim();
-    if (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { markValid('email');   return true; }
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { markValid('email'); return true; }
     markInvalid('email'); return false;
   }
 
   function checkPhone() {
     /* Strips spaces/hyphens so "071 234 5678" passes */
     var v = document.getElementById('phone').value.trim().replace(/[\s\-]/g, '');
-    if (/^(\+27|0)[6-8][0-9]{8}$/.test(v)) { markValid('phone');   return true; }
+    if (/^(\+27|0)[6-8][0-9]{8}$/.test(v)) { markValid('phone'); return true; }
     markInvalid('phone'); return false;
   }
 
   function checkService() {
     var v = document.getElementById('service').value;
-    if (v !== '') { markValid('service');  return true; }
+    if (v !== '') { markValid('service'); return true; }
     markInvalid('service'); return false;
   }
 
@@ -450,18 +450,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
       /* All valid — save and show success */
       saveSubmission({
-        name:    document.getElementById('name').value.trim(),
-        email:   document.getElementById('email').value.trim(),
-        phone:   document.getElementById('phone').value.trim(),
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
         service: document.getElementById('service').value,
         message: document.getElementById('message').value.trim()
       });
 
-      submitBtn.disabled  = true;
+      submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending…';
 
       setTimeout(function () {
-        formFields.style.display  = 'none';
+        formFields.style.display = 'none';
         formSuccess.style.display = 'block';
         formSuccess.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 1000);
@@ -476,11 +476,11 @@ document.addEventListener('DOMContentLoaded', function () {
       Object.keys(CHECKS).forEach(clearField);
       if (charCount) { charCount.textContent = '0'; charCount.style.color = ''; }
       if (submitBtn) {
-        submitBtn.disabled  = false;
+        submitBtn.disabled = false;
         submitBtn.innerHTML = 'Send Message <i class="fas fa-arrow-right ms-2"></i>';
       }
       formSuccess.style.display = 'none';
-      formFields.style.display  = 'block';
+      formFields.style.display = 'block';
     });
   }
 
