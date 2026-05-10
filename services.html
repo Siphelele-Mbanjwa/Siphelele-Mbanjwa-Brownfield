@@ -17,71 +17,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
-    /* Custom styles for services page (matching design from example) */
     .services__grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 28px;
-    }
-    .service-card {
-      background: #fff;
-      border: 1px solid var(--color-border);
-      border-radius: 16px;
-      padding: 2rem 1.5rem;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-      border-color: var(--color-cta);
-    }
-    .service-card__icon {
-      font-size: 2.2rem;
-      color: var(--color-cta);
-      margin-bottom: 1.2rem;
-    }
-    .service-card h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-    .service-card p {
-      font-size: 0.85rem;
-      color: var(--color-muted);
-      line-height: 1.6;
-      margin-bottom: 1.2rem;
-    }
-    .service-card ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .service-card ul li {
-      font-size: 0.8rem;
-      color: var(--color-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .service-card ul li i {
-      color: var(--color-cta);
-      font-size: 0.7rem;
-    }
-
-    /* Why Choose Us section (dark variant) */
-    .why-dark {
-      background: #1a1a1a;
-      color: rgba(255,255,255,0.85);
-      padding: 5rem 0;
-    }
-    .why-dark .section-header h2 {
-      color: #fff;
-    }
-    .why-dark .section-header p {
-      color: rgba(255,255,255,0.6);
     }
     .why__grid {
       display: grid;
@@ -89,61 +28,10 @@
       gap: 28px;
       margin-top: 3rem;
     }
-    .why-item {
-      text-align: center;
-      padding: 0 0.5rem;
-    }
-    .why-item i {
-      font-size: 2rem;
-      color: #84c02a;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-    .why-item h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-    .why-item p {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.5;
-    }
-
-    /* CTA banner */
-    .cta-banner {
-      background: var(--color-cta);
-      color: #fff;
-      padding: 4rem 0;
-      text-align: center;
-    }
-    .cta-banner h2 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      margin-bottom: 1rem;
-    }
-    .cta-banner p {
-      font-size: 1rem;
-      opacity: 0.9;
-      margin-bottom: 2rem;
-    }
-    .btn-white {
-      background: #fff;
-      color: var(--color-cta);
-      padding: 0.7rem 2rem;
-      border-radius: 3px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: inline-block;
-    }
-    .btn-white:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      background: #fff;
-      color: var(--color-cta-dark);
-    }
-
+    .why-item { text-align: center; padding: 0 0.5rem; }
+    .why-item i { font-size: 2rem; color: #84c02a; margin-bottom: 1rem; display: inline-block; }
+    .why-item h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
+    .why-item p { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
     @media (max-width: 992px) {
       .services__grid { grid-template-columns: repeat(2, 1fr); }
       .why__grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
@@ -156,7 +44,7 @@
 </head>
 <body>
 
-  <!-- ══ NAVBAR (same as all pages) ══ -->
+  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid px-4 px-lg-5">
       <a class="navbar-brand jostas-logo" href="index.html">
@@ -178,96 +66,90 @@
     </div>
   </nav>
 
-  <!-- ══ PAGE HERO ══ -->
+  <!-- PAGE HERO -->
   <div style="background:var(--color-sand);border-bottom:1px solid var(--color-border);padding:4rem 0;">
     <div class="container-fluid px-4 px-lg-5">
       <span class="section-label">What We Do</span>
       <h1 class="fw-bold" style="font-size:clamp(2rem,5vw,3.2rem);">Our Services</h1>
-      <p class="text-secondary mb-0" style="max-width:650px; font-size:1rem;">From cosy interiors to expansive commercial facades — we have the expertise to transform any surface beautifully.</p>
+      <p class="text-secondary mb-0" style="max-width:650px;font-size:1rem;">From cosy interiors to expansive commercial facades — we have the expertise to transform any surface beautifully.</p>
     </div>
   </div>
 
-  <!-- ══ SERVICES GRID ══ -->
+  <!-- SERVICES GRID -->
   <section class="py-5">
     <div class="container-fluid px-4 px-lg-5">
       <div class="services__grid">
-        <!-- Residential -->
         <div class="service-card reveal">
           <div class="service-card__icon"><i class="fas fa-house-chimney-window"></i></div>
           <h3>Residential</h3>
           <p>We bring life to living rooms, bedrooms, kitchens, and more — working carefully around your family and belongings.</p>
           <ul>
-            <li><i class="fas fa-check-circle"></i> Interior & exterior walls</li>
-            <li><i class="fas fa-check-circle"></i> Ceilings & trim</li>
-            <li><i class="fas fa-check-circle"></i> Feature walls & accent colours</li>
+            <li><i class="fas fa-check-circle"></i> Interior &amp; exterior walls</li>
+            <li><i class="fas fa-check-circle"></i> Ceilings &amp; trim</li>
+            <li><i class="fas fa-check-circle"></i> Feature walls &amp; accent colours</li>
           </ul>
         </div>
-        <!-- Commercial -->
         <div class="service-card reveal" style="transition-delay:0.05s">
           <div class="service-card__icon"><i class="fa-regular fa-building"></i></div>
           <h3>Commercial</h3>
           <p>Offices, retail spaces, warehouses — we work to deadlines and minimise disruption to your business operations.</p>
           <ul>
-            <li><i class="fas fa-check-circle"></i> Office & retail fit-outs</li>
-            <li><i class="fas fa-check-circle"></i> Industrial & warehouse spaces</li>
+            <li><i class="fas fa-check-circle"></i> Office &amp; retail fit-outs</li>
+            <li><i class="fas fa-check-circle"></i> Industrial &amp; warehouse spaces</li>
             <li><i class="fas fa-check-circle"></i> After-hours scheduling available</li>
           </ul>
         </div>
-        <!-- Interior -->
         <div class="service-card reveal" style="transition-delay:0.1s">
           <div class="service-card__icon"><i class="fas fa-couch"></i></div>
           <h3>Interior</h3>
           <p>Expert prep, priming, and painting for walls, ceilings, trim, and cabinetry. Perfect, smooth results every time.</p>
           <ul>
-            <li><i class="fas fa-check-circle"></i> Wall & ceiling painting</li>
-            <li><i class="fas fa-check-circle"></i> Cabinet & furniture repainting</li>
+            <li><i class="fas fa-check-circle"></i> Wall &amp; ceiling painting</li>
+            <li><i class="fas fa-check-circle"></i> Cabinet &amp; furniture repainting</li>
             <li><i class="fas fa-check-circle"></i> Full surface preparation</li>
           </ul>
         </div>
-        <!-- Exterior -->
         <div class="service-card reveal">
           <div class="service-card__icon"><i class="fas fa-sun"></i></div>
           <h3>Exterior</h3>
           <p>Weather-resistant coatings applied with precision to protect and beautify your property year-round.</p>
           <ul>
-            <li><i class="fas fa-check-circle"></i> Render & brick painting</li>
-            <li><i class="fas fa-check-circle"></i> Weatherproofing & sealants</li>
-            <li><i class="fas fa-check-circle"></i> Roof & boundary wall coating</li>
+            <li><i class="fas fa-check-circle"></i> Render &amp; brick painting</li>
+            <li><i class="fas fa-check-circle"></i> Weatherproofing &amp; sealants</li>
+            <li><i class="fas fa-check-circle"></i> Roof &amp; boundary wall coating</li>
           </ul>
         </div>
-        <!-- Wallpaper -->
         <div class="service-card reveal" style="transition-delay:0.05s">
           <div class="service-card__icon"><i class="fas fa-scroll"></i></div>
           <h3>Wallpaper</h3>
           <p>Professional hanging of all wallpaper types — from traditional rolls to modern peel-and-stick and mural installations.</p>
           <ul>
-            <li><i class="fas fa-check-circle"></i> Traditional & paste-the-wall</li>
-            <li><i class="fas fa-check-circle"></i> Peel-and-stick & self-adhesive</li>
+            <li><i class="fas fa-check-circle"></i> Traditional &amp; paste-the-wall</li>
+            <li><i class="fas fa-check-circle"></i> Peel-and-stick &amp; self-adhesive</li>
             <li><i class="fas fa-check-circle"></i> Large-format murals</li>
           </ul>
         </div>
-        <!-- Colour Consultation -->
         <div class="service-card reveal" style="transition-delay:0.1s">
           <div class="service-card__icon"><i class="fas fa-palette"></i></div>
           <h3>Colour Consultation</h3>
           <p>Can't decide on a shade? Our colour consultants guide you through palettes, samples, and lighting effects.</p>
           <ul>
             <li><i class="fas fa-check-circle"></i> On-site colour matching</li>
-            <li><i class="fas fa-check-circle"></i> Sample testing & review</li>
-            <li><i class="fas fa-check-circle"></i> Mood board & palette creation</li>
+            <li><i class="fas fa-check-circle"></i> Sample testing &amp; review</li>
+            <li><i class="fas fa-check-circle"></i> Mood board &amp; palette creation</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══ WHY US (dark variant) ══ -->
+  <!-- WHY US -->
   <section class="why-dark">
     <div class="container-fluid px-4 px-lg-5">
-      <div class="section-header text-center mb-4">
+      <div class="text-center mb-4">
         <span class="section-label" style="color:#84c02a;">Why Choose Us</span>
         <h2 class="fw-bold" style="color:#fff;">The Jostas difference</h2>
-        <p class="mx-auto" style="max-width:600px;">What sets us apart from every other painting company in KZN.</p>
+        <p class="mx-auto text-white-50" style="max-width:600px;">What sets us apart from every other painting company in KZN.</p>
       </div>
       <div class="why__grid">
         <div class="why-item reveal"><i class="fas fa-shield-halved"></i><h3>Fully Insured</h3><p>All work is covered by comprehensive public liability insurance for your peace of mind.</p></div>
@@ -278,7 +160,7 @@
     </div>
   </section>
 
-  <!-- ══ CTA BANNER ══ -->
+  <!-- CTA BANNER -->
   <section class="cta-banner">
     <div class="container-fluid px-4 px-lg-5">
       <h2>Ready to get started?</h2>
@@ -287,7 +169,7 @@
     </div>
   </section>
 
-  <!-- ══ FOOTER══ -->
+  <!-- FOOTER -->
   <footer style="background:#1a1a1a;color:rgba(255,255,255,.55);padding:3rem 0 1.5rem">
     <div class="container-fluid px-4 px-lg-5">
       <div class="row g-4 pb-4" style="border-bottom:1px solid rgba(255,255,255,.1)">
@@ -333,25 +215,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
-  <script>
-    // Simple scroll reveal for cards (if not already in main.js)
-    (function() {
-      const reveals = document.querySelectorAll('.reveal');
-      if (reveals.length && !document.querySelector('style').innerText.includes('reveal.visible')) {
-        const style = document.createElement('style');
-        style.textContent = `.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; } .reveal.visible { opacity: 1; transform: translateY(0); }`;
-        document.head.appendChild(style);
-      }
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    })();
-  </script>
 </body>
 </html>

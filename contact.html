@@ -56,8 +56,6 @@
       <div class="row g-5">
 
         <!-- LEFT: Contact info -->
-        <!-- FIX: original had a mismatched </div> after the hours block that closed col-lg-4 too early,
-             pushing the form column into a broken layout. Removed the stray </div> and the orphaned <hr>. -->
         <div class="col-lg-4">
           <div class="d-flex flex-column gap-4">
 
@@ -101,9 +99,11 @@
         <div class="col-lg-7 offset-lg-1">
           <div class="contact-form-card">
 
-            <!-- Success message (hidden initially) -->
-            <div id="formSuccess" class="text-center py-4 d-none">
-              <div class="contact-success-icon mx-auto mb-3">
+            <!-- FIX: was class="d-none" — Bootstrap's d-none uses !important which blocks
+                 main.js from showing this with style.display='block'.
+                 Replaced with style="display:none" which JS can override correctly. -->
+            <div id="formSuccess" style="display:none;" class="text-center py-4">
+              <div class="mx-auto mb-3">
                 <i class="fas fa-check-circle fa-3x" style="color:var(--color-cta);"></i>
               </div>
               <h3 class="fw-bold">Message received!</h3>
@@ -111,7 +111,7 @@
               <button type="button" class="btn cta-button-custom mt-2" id="resetFormBtn">Send another message</button>
             </div>
 
-            <!-- Form (visible initially) -->
+            <!-- Form fields -->
             <div id="formFields">
               <h2 class="fw-bold mb-1">Send us a message</h2>
               <p class="text-secondary mb-4">Fill in the details and we'll respond within 24 hours.</p>
@@ -120,12 +120,12 @@
                 <div class="row g-3 mb-3">
                   <div class="col-md-6">
                     <label class="contact-form-label" for="name">Full name *</label>
-                    <input type="text" class="form-control contact-form-input" id="name" placeholder="Jane Smith" autocomplete="name">
+                    <input type="text" class="form-control contact-form-input" id="name" placeholder="Jane Smith" autocomplete="name" />
                     <div class="form__error" id="err-name">Please enter your full name (min 2 characters).</div>
                   </div>
                   <div class="col-md-6">
                     <label class="contact-form-label" for="email">Email *</label>
-                    <input type="email" class="form-control contact-form-input" id="email" placeholder="jane@example.com" autocomplete="email">
+                    <input type="email" class="form-control contact-form-input" id="email" placeholder="jane@example.com" autocomplete="email" />
                     <div class="form__error" id="err-email">Enter a valid email address.</div>
                   </div>
                 </div>
@@ -133,7 +133,7 @@
                 <div class="row g-3 mb-3">
                   <div class="col-md-6">
                     <label class="contact-form-label" for="phone">Phone *</label>
-                    <input type="tel" class="form-control contact-form-input" id="phone" placeholder="071 234 5678" autocomplete="tel">
+                    <input type="tel" class="form-control contact-form-input" id="phone" placeholder="071 234 5678" autocomplete="tel" />
                     <div class="form__error" id="err-phone">Enter a valid SA phone number (e.g. 0712345678 or +27712345678).</div>
                   </div>
                   <div class="col-md-6">
